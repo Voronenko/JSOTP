@@ -53,7 +53,7 @@
     </header>
     <div id="main" role="main" class="center">
 
-       <p data-bind="text:token" id="code">LOADING...</p>
+       <p data-bind="text:token, visible:(existsclue())" id="code">LOADING...</p>
 
        <p data-bind="text:clue" id="clue">CLUE</p>(<span data-bind="text:existsclue"></span>)
        <p data-bind="visible:(!existsclue())" id="syncro">
