@@ -139,7 +139,7 @@ we are detecting whenever CLUE is present in localstorage, and if not - propose 
 method, but for demo purposes we use simple approach: put clue in the session and display QR code that can be grabbed
 by client device.
 <pre>
-<?php
+&lt;?php
 
 require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR .'rfc6238/base32static.php');
 session_start();
@@ -151,12 +151,12 @@ $_SESSION['secretcode'] = $secretcode;
 $url = "http://".$_SERVER["HTTP_HOST"].str_replace(basename($_SERVER["SCRIPT_NAME"]),"",$_SERVER["SCRIPT_NAME"])."setupinitdevice.php?PHPSESSID=".$_COOKIE["PHPSESSID"];
 
 
-?>
-<h1> Please navigate by link below to setup 2 factor auth </h1>
-<img src="setupqrcodeimage.php?PHPSESSID=<?php print $_COOKIE["PHPSESSID"]?>" />
-<br/>
+?&gt;
+&lt;h1&gt; Please navigate by link below to setup 2 factor auth &lt;/h1&gt;
+&lt;img src="setupqrcodeimage.php?PHPSESSID=&lt;?php print $_COOKIE["PHPSESSID"]?&gt;" /&gt;
+&lt;br/&gt;
 
-<a href="<?php print $url?>">This is the same link for debug</a>
+&lt;a href="&lt;?php print $url?&gt;"&gt;This is the same link for debug&lt;/a&gt;
 </pre>
 
 Once link is opened on device using QR Code or in a different way, - device is configured.
@@ -198,7 +198,7 @@ Let's enable our application for offline by declaring manifest:
 [html class="no-js" lang="en" manifest="appcache.php"]
 
 In real scenario you might want manifest file to be compact, but again for purposes of demo let's include all project scripts into offline mode
-  
+
 <pre>
 &lt;?php
   header('Content-Type: text/cache-manifest');

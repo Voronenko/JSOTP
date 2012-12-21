@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="81c9d0ac-1ea0-436e-aff5-0f45f9426a0e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-    </list>
+    <list default="true" id="81c9d0ac-1ea0-436e-aff5-0f45f9426a0e" name="Default" comment="" />
     <ignored path="JSOTP.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,7 +23,7 @@
       <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="200" column="2" selection-start="7673" selection-end="7673" vertical-scroll-proportion="0.27784157">
+            <state line="158" column="58" selection-start="6100" selection-end="6107" vertical-scroll-proportion="0.7352246">
               <folding />
             </state>
           </provider>
@@ -505,7 +502,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="200" column="2" selection-start="7673" selection-end="7673" vertical-scroll-proportion="0.27784157">
+        <state line="158" column="58" selection-start="6100" selection-end="6107" vertical-scroll-proportion="0.7352246">
           <folding />
         </state>
       </provider>
