@@ -1,0 +1,2 @@
+AddType text/cache-manifest appcache 
+AddType text/cache-manifest .appcache 
