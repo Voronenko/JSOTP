@@ -209,7 +209,7 @@ In real scenario you might want manifest file to be compact, but again for purpo
   $dir = new RecursiveDirectoryIterator(".");
   foreach(new RecursiveIteratorIterator($dir) as $file) {
     if ($file-&gt;IsFile() &&
-       ($file != "./manifest.php") &&
+       ($file != "./appcache.php") &&
        (pathinfo($file, PATHINFO_EXTENSION)!='appcache') &&
        (substr($file-&gt;getFilename(), 0, 1) != ".")
        )
