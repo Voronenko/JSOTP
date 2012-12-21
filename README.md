@@ -198,7 +198,7 @@ Let's enable our application for offline by declaring manifest:
 [html class="no-js" lang="en" manifest="appcache.php"]
 
 In real scenario you might want manifest file to be compact, but again for purposes of demo let's include all project scripts into offline mode
-
+  
 <pre>
 &lt;?php
   header('Content-Type: text/cache-manifest');
