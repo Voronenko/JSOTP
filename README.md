@@ -113,25 +113,25 @@ one method - UpdateToken - calculates OTP and updates model properties.
 
 View:
 <pre>
-    <header aria="company logo">
-       <div class="center"><img src="im/logo.gif"/></div>
+    &lt;header aria="company logo"&gt;
+       &lt;div class="center"&gt;&lt;img src="im/logo.gif"/&gt;&lt;/div&gt;
 
-    </header>
-    <div id="main" role="main" class="center">
+    &lt;/header&gt;
+    &lt;div id="main" role="main" class="center"&gt;
 
-       <p data-bind="text:token" id="code">LOADING...</p>
+       &lt;p data-bind="text:token" id="code"&gt;LOADING...&lt;/p&gt;
 
-       <p data-bind="text:clue" id="clue">CLUE</p>(<span data-bind="text:existsclue"></span>)
-       <p data-bind="visible:(!existsclue())" id="syncro">
-          <a href="setup.php">Please navigate to this link to setup your device!</a>
-       </p>
+       &lt;p data-bind="text:clue" id="clue"&gt;CLUE&lt;/p&gt;(&lt;span data-bind="text:existsclue"&gt;&lt;/span&gt;)
+       &lt;p data-bind="visible:(!existsclue())" id="syncro"&gt;
+          &lt;a href="setup.php"&gt;Please navigate to this link to setup your device!&lt;/a&gt;
+       &lt;/p&gt;
 
 
-       <p>
-          <a href="#" onclick="window.applicationCache.update()">Debug: cache.swapCache()</a>
-       </p>
+       &lt;p&gt;
+          &lt;a href="#" onclick="window.applicationCache.update()"&gt;Debug: cache.swapCache()&lt;/a&gt;
+       &lt;/p&gt;
 
-    </div>
+    &lt;/div&gt;
 </pre>
 
 we are detecting whenever CLUE is present in localstorage, and if not - propose our customer to setup
@@ -161,7 +161,7 @@ $url = "http://".$_SERVER["HTTP_HOST"].str_replace(basename($_SERVER["SCRIPT_NAM
 
 Once link is opened on device using QR Code or in a different way, - device is configured.
 <pre>
-<?php
+&lt;?php
   session_start();
   $secretcode = $_SESSION['secretcode'];
   if (empty($secretcode)) {
@@ -170,35 +170,62 @@ Once link is opened on device using QR Code or in a different way, - device is c
 
 
   $url = "http://".$_SERVER["HTTP_HOST"].str_replace(basename($_SERVER["SCRIPT_NAME"]),"",$_SERVER["SCRIPT_NAME"])."index.html";
-?>
-<html>
-  <head>
-    <meta http-equiv="refresh" content="2;url=<?php print $url?>">
-    <script type="text/javascript">
+?&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="refresh" content="2;url=&lt;?php print $url?&gt;"&gt;
+    &lt;script type="text/javascript"&gt;
         if (!window.localStorage) {
            alert('Sorry! this device is not supported');
         }
 
-        localStorage.setItem('CLUE', '<?php print $secretcode?>');
+        localStorage.setItem('CLUE', '&lt;?php print $secretcode?&gt;');
         alert(localStorage.getItem('CLUE'));
-    </script>
-  </head>
-  <body>
-    <a href="<?php print $url?>">If this page did not redirect you, press here</a>
-  </body>
-</html>
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;a href="&lt;?php print $url?&gt;"&gt;If this page did not redirect you, press here&lt;/a&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
 </pre>
 
-#Using the code
+##Offline mode
 
-A brief description of how to use the article or code. The
-class names, the methods and properties, any tricks or tips.
-Blocks of code should be set as style "Formatted"
+Our customer shouldn't required to get internet access each time when he needs OTP value. Here is the place
+when we make use of another html5 technology: offline cache  https://developer.mozilla.org/en-US/docs/HTML/Using_the_application_cache
+Let's enable our application for offline by declaring manifest:
 
-#Points of Interest
+[html class="no-js" lang="en" manifest="appcache.php"]
 
-Did you learn anything interesting/fun/annoying while writing
-the code? Did you do anything particularly clever or wild or zany?
+In real scenario you might want manifest file to be compact, but again for purposes of demo let's include all project scripts into offline mode
+
+<pre>
+&lt;?php
+  header('Content-Type: text/cache-manifest');
+  echo "CACHE MANIFEST\n";
+
+ $hashes = "";
+
+  $dir = new RecursiveDirectoryIterator(".");
+  foreach(new RecursiveIteratorIterator($dir) as $file) {
+    if ($file-&gt;IsFile() &&
+       ($file != "./manifest.php") &&
+       (pathinfo($file, PATHINFO_EXTENSION)!='appcache') &&
+       (substr($file-&gt;getFilename(), 0, 1) != ".")
+       )
+    {
+      echo $file . "\n";
+      $hashes .= md5_file($file);
+    }
+  }
+  echo "# Hash: " . md5($hashes) . "\n";
+
+?&gt;
+</pre>
+
+
+#Code in action
+
 
 #History
 
