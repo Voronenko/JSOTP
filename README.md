@@ -225,7 +225,13 @@ In real scenario you might want manifest file to be compact, but again for purpo
 
 
 #Code in action
+I will demonstrate the code in series of the screenshots.
 
+![CLUE is not defined](https://github.com/Voronenko/JSOTP/blob/master/_readme/desktop1.jpg?raw=true)
+![CLUE setup process](https://github.com/Voronenko/JSOTP/blob/master/_readme/desktop2.jpg?raw=true)
+![CLUE is stored, OTP working](https://github.com/Voronenko/JSOTP/blob/master/_readme/desktop3.jpg?raw=true)
+![Can be added to home screen of the mobile device](https://github.com/Voronenko/JSOTP/blob/master/_readme/mobile4.jpg?raw=true)
+![And used in offline mode](https://github.com/Voronenko/JSOTP/blob/master/_readme/mobile5.jpg?raw=true)
 
 #History
 

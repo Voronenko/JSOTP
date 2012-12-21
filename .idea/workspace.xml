@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="81c9d0ac-1ea0-436e-aff5-0f45f9426a0e" name="Default" comment="" />
+    <list default="true" id="81c9d0ac-1ea0-436e-aff5-0f45f9426a0e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+    </list>
     <ignored path="JSOTP.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,10 +22,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="158" column="58" selection-start="6143" selection-end="6143" vertical-scroll-proportion="-24.88">
+            <state line="228" column="0" selection-start="8333" selection-end="8333" vertical-scroll-proportion="0.7990544">
               <folding />
             </state>
           </provider>
@@ -38,10 +40,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="42" selection-start="2913" selection-end="2913" vertical-scroll-proportion="0.44951922">
+            <state line="55" column="42" selection-start="2913" selection-end="2913" vertical-scroll-proportion="20.923077">
               <folding />
             </state>
           </provider>
@@ -81,8 +83,8 @@
         <option value="$PROJECT_DIR$/offline.html" />
         <option value="$PROJECT_DIR$/offline.appcache" />
         <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -498,16 +500,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="158" column="58" selection-start="6143" selection-end="6143" vertical-scroll-proportion="-24.88">
+        <state line="55" column="42" selection-start="2913" selection-end="2913" vertical-scroll-proportion="20.923077">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="42" selection-start="2913" selection-end="2913" vertical-scroll-proportion="0.44951922">
+        <state line="228" column="0" selection-start="8333" selection-end="8333" vertical-scroll-proportion="0.7990544">
           <folding />
         </state>
       </provider>
