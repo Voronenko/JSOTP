@@ -44,9 +44,150 @@ implemented in JavaScript using best practices and patterns. They are fast, and 
 interface. Library is still supported and developed at the present moment. We can find there both sha1 and hmac
 implementations - brilliant!
 
+OTP algorythm: Javascript becomes quite popular now: for example we can use this NodeJS module as a basis
+https://github.com/guyht/notp/ . The issue is that module designed specifically for NodeJS environment, thus
+all not important dependencies need to be eliminated in order to allow this module work in a browser environment.
+MIT license allows us to do such modifications.
+
+In this case I had to do a port of the Buffer object, use nibbler implementation for base32 and emulate NodeJS crypto
+module (http://nodejs.org/api/crypto.html)for HMAC calculation.
+
+var cryptoFAKE = {
+   createHmac:function(algorithm, key) {
+      var _key = key.value();
+      return new HMacBasicImpl(_key);
+   }
+};
 
 
+As a result, in order to calculate OTP value using adopted code, we need to call
 
+Notp.getTOTP (args, err, cb)
+
+Arguments: object with required field K - private key string
+
+
+## UI
+For UI we have to answer on following questions:
+  * Where will we store the key (referred as a CLUE in this section)
+  * How will we program the UI.
+
+Fortunately HTML5 allows web pages to persist their data on the client device -
+DOM Storage https://developer.mozilla.org/en-US/docs/DOM/Storage.
+
+
+ var CLUE= localStorage.getItem('CLUE');
+    if (typeof(CLUE)=="undefined") {
+       CLUE=null;
+    }
+
+
+For Single Page Applications my favorite library is KnockoutJS. It allows to concentrate on developing logic,
+and outsource binding to html elements on Knockout markup.
+
+Model: has three properties: clue (the key), current token and boolean property that informs whenever clue is present or not.
+one method - UpdateToken - calculates OTP and updates model properties.
+
+  var Model = {
+       existsclue:ko.observable((CLUE!=null)),
+       clue:  ko.observable(CLUE),
+       token: ko.observable('XXXXXXX'),
+       notp: new Notp(),
+       UpdateTokenCallback: function(code) {
+         this.token(code);
+       },
+
+       UpdateToken: function(){
+
+          var args = {
+		K : CLUE
+        	};
+
+            this.notp.getTOTP(args,
+        	function(err) { alert(err); },
+                Model.UpdateTokenCallback.bind(Model)
+            );
+       }
+    }
+
+
+View:
+<pre>
+    <header aria="company logo">
+       <div class="center"><img src="im/logo.gif"/></div>
+
+    </header>
+    <div id="main" role="main" class="center">
+
+       <p data-bind="text:token" id="code">LOADING...</p>
+
+       <p data-bind="text:clue" id="clue">CLUE</p>(<span data-bind="text:existsclue"></span>)
+       <p data-bind="visible:(!existsclue())" id="syncro">
+          <a href="setup.php">Please navigate to this link to setup your device!</a>
+       </p>
+
+
+       <p>
+          <a href="#" onclick="window.applicationCache.update()">Debug: cache.swapCache()</a>
+       </p>
+
+    </div>
+</pre>
+
+we are detecting whenever CLUE is present in localstorage, and if not - propose our customer to setup
+("Please navigate to this link to setup your device"). In a real scenario we might want person to login using some secure
+method, but for demo purposes we use simple approach: put clue in the session and display QR code that can be grabbed
+by client device.
+<pre>
+<?php
+
+require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR .'rfc6238/base32static.php');
+session_start();
+$secretcode = '12345678901234567890';
+$_SESSION['secretcode'] = $secretcode;
+;
+
+
+$url = "http://".$_SERVER["HTTP_HOST"].str_replace(basename($_SERVER["SCRIPT_NAME"]),"",$_SERVER["SCRIPT_NAME"])."setupinitdevice.php?PHPSESSID=".$_COOKIE["PHPSESSID"];
+
+
+?>
+<h1> Please navigate by link below to setup 2 factor auth </h1>
+<img src="setupqrcodeimage.php?PHPSESSID=<?php print $_COOKIE["PHPSESSID"]?>" />
+<br/>
+
+<a href="<?php print $url?>">This is the same link for debug</a>
+</pre>
+
+Once link is opened on device using QR Code or in a different way, - device is configured.
+<pre>
+<?php
+  session_start();
+  $secretcode = $_SESSION['secretcode'];
+  if (empty($secretcode)) {
+    die('Sorry, device is not supported /'.$_COOKIE["PHPSESSID"].'/ while'.session_id(). '  AND #'.$_SESSION['secretcode'].'#');
+  }
+
+
+  $url = "http://".$_SERVER["HTTP_HOST"].str_replace(basename($_SERVER["SCRIPT_NAME"]),"",$_SERVER["SCRIPT_NAME"])."index.html";
+?>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="2;url=<?php print $url?>">
+    <script type="text/javascript">
+        if (!window.localStorage) {
+           alert('Sorry! this device is not supported');
+        }
+
+        localStorage.setItem('CLUE', '<?php print $secretcode?>');
+        alert(localStorage.getItem('CLUE'));
+    </script>
+  </head>
+  <body>
+    <a href="<?php print $url?>">If this page did not redirect you, press here</a>
+  </body>
+</html>
+</pre>
 
 #Using the code
 
