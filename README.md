@@ -3,7 +3,7 @@ JSOTP
 
 Compact One Time Password Generator (RFC6238)
 
-#Introduction
+# Introduction
 
 In one of previous articles I've briefly demonstrated how OTP value is calculated
 (http://labs.voronenko.info/109454540) as well as shared compact set of PHP classes and libraries
@@ -14,7 +14,7 @@ You might need want this UI to be branded with your application/service skin, et
 
 This article will show how to deal with it.
 
-#Background
+# Background
 
 The OTP token generator program is usually an application on some mobile device: IOS or Android based.
 Both platforms support HTML5 very well, and this allows us to implement our OTP generator in pure HTML/Javascript,
@@ -189,7 +189,7 @@ Once link is opened on device using QR Code or in a different way, - device is c
 &lt;/html&gt;
 </pre>
 
-##Offline mode
+## Offline mode
 
 Our customer shouldn't required to get internet access each time when he needs OTP value. Here is the place
 when we make use of another html5 technology: offline cache  https://developer.mozilla.org/en-US/docs/HTML/Using_the_application_cache
@@ -224,7 +224,7 @@ In real scenario you might want manifest file to be compact, but again for purpo
 </pre>
 
 
-#Code in action
+# Code in action
 I will demonstrate the code in series of the screenshots.
 
 ![CLUE is not defined](https://github.com/Voronenko/JSOTP/blob/master/_readme/desktop1.jpg?raw=true)
@@ -237,7 +237,7 @@ I will demonstrate the code in series of the screenshots.
 
 ![And used in offline mode](https://github.com/Voronenko/JSOTP/blob/master/_readme/mobile5.jpg?raw=true)
 
-#Important note on running demo in offline mode
+# Important note on running demo in offline mode
 Please ensure that cache manifest is served with correct mime type.
 <pre>
 AddType text/cache-manifest appcache
